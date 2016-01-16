@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/router5-persistent-params.svg)](https://badge.fury.io/js/router5-persistent-params)
+[![Build Status](https://travis-ci.org/router5/router5-persistent-params.svg?branch=master)](https://travis-ci.org/router5/router5-persistent-params)
+
 # router-persistent-params
 
 > Persistent route parameters plugin for router5.
