@@ -1,0 +1,47 @@
+{
+  "name": "router5-persistent-params",
+  "version": "1.0.0",
+  "description": "Persistent route parameters plugin for router5",
+  "main": "dist/commonjs/index.js",
+  "jsnext:main": "modules/index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint modules",
+    "build:cjs": "babel modules --out-dir dist/commonjs",
+    "build:amd": "rollup -c rollup.config.js -f amd",
+    "build:umd": "rollup -c rollup.config.js -f umd",
+    "build": "npm run clean && npm run build:cjs && npm run build:amd && npm run build:umd",
+    "clog": "conventional-changelog -p angular -i CHANGELOG.md -w",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/router5/router5-persistent-params.git"
+  },
+  "keywords": [
+    "router5",
+    "persistent",
+    "query parameters"
+  ],
+  "author": "Thomas Roch <thomas.c.roch@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/router5/router5-persistent-params/issues"
+  },
+  "homepage": "https://github.com/router5/router5-persistent-params#readme",
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-eslint": "^4.1.6",
+    "babel-plugin-transform-object-rest-spread": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "chai": "^3.4.1",
+    "conventional-changelog": "^0.5.3",
+    "eslint": "^1.10.3",
+    "mocha": "^2.3.4",
+    "rimraf": "^2.5.0",
+    "rollup": "^0.24.1",
+    "rollup-plugin-babel": "^2.3.9",
+    "yargs": "^3.32.0"
+  }
+}
