@@ -1,5 +1,3 @@
-import Path from 'path-parser';
-
 const persistentParamsPlugin = params => router => {
     // Persistent parameters
     const persistentParams = params.reduce(
@@ -8,8 +6,9 @@ const persistentParamsPlugin = params => router => {
     );
 
     // Root node path
-    router.rootNode.path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
-    router.rootNode.parser = new Path(router.rootNode.path);
+    const path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
+    console.log(path);
+    router.rootNode.setPath(path);
 
     const { buildPath, buildState } = router;
 
