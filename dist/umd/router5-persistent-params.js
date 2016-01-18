@@ -45,7 +45,8 @@
             }, {});
 
             // Root node path
-            router.rootNode.path = params.length ? '?' + params.join('&') : '';
+            var path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
+            router.rootNode.setPath(path);
 
             var buildPath = router.buildPath;
             var buildState = router.buildState;
@@ -53,16 +54,17 @@
             // Decorators
 
             router.buildPath = function (route, params) {
-                params = babelHelpers.extends({}, persistentParams, params);
-                return buildPath(route, params);
+                var routeParams = babelHelpers.extends({}, persistentParams, params);
+                return buildPath.call(router, route, routeParams);
             };
 
             router.buildState = function (route, params) {
-                params = babelHelpers.extends({}, persistentParams, params);
-                return buildState(route, params);
+                var routeParams = babelHelpers.extends({}, persistentParams, params);
+                return buildState.call(router, route, routeParams);
             };
 
             return {
+                name: 'PERSISTENT_PARAMS',
                 onTransitionSuccess: function onTransitionSuccess(toState) {
                     Object.keys(toState.params).filter(function (p) {
                         return params.indexOf(p) !== -1;

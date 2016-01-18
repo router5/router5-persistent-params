@@ -7,7 +7,6 @@ const persistentParamsPlugin = params => router => {
 
     // Root node path
     const path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
-    console.log(path);
     router.rootNode.setPath(path);
 
     const { buildPath, buildState } = router;

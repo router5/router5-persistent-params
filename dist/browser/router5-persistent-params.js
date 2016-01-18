@@ -1,4 +1,5 @@
-define('router5PersistentParamsPlugin', function () { 'use strict';
+var router5PersistentParamsPlugin = (function () {
+    'use strict';
 
     var babelHelpers = {};
 
@@ -74,4 +75,4 @@ define('router5PersistentParamsPlugin', function () { 'use strict';
 
     return persistentParamsPlugin;
 
-});
+}());
