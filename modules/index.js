@@ -1,3 +1,5 @@
+import Path from 'path-parser';
+
 const persistentParamsPlugin = params => router => {
     // Persistent parameters
     const persistentParams = params.reduce(
@@ -6,22 +8,24 @@ const persistentParamsPlugin = params => router => {
     );
 
     // Root node path
-    router.rootNode.path = params.length ? '?' + params.join('&') : '';
+    router.rootNode.path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
+    router.rootNode.parser = new Path(router.rootNode.path);
 
     const { buildPath, buildState } = router;
 
     // Decorators
-    router.buildPath = (route, params) => {
-        params = { ...persistentParams, ...params };
-        return buildPath(route, params);
+    router.buildPath = function (route, params) {
+        const routeParams = { ...persistentParams, ...params };
+        return buildPath.call(router, route, routeParams);
     };
 
-    router.buildState = (route, params) => {
-        params = { ...persistentParams, ...params };
-        return buildState(route, params);
+    router.buildState = function (route, params) {
+        const routeParams = { ...persistentParams, ...params };
+        return buildState.call(router, route, routeParams);
     };
 
     return {
+        name: 'PERSISTENT_PARAMS',
         onTransitionSuccess(toState) {
             Object.keys(toState.params)
                 .filter(p => params.indexOf(p) !== -1)
