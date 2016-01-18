@@ -1,0 +1,33 @@
+{
+  "name": "router5-persistent-params",
+  "version": "1.0.0",
+  "homepage": "http://router5.github.io",
+  "authors": [
+    "Thomas Roch <thomas.c.roch@gmail.com>"
+  ],
+  "description": "Persistent params plugin for router5",
+  "main": "dist/browser/router5-persistent-params.min.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "router",
+    "router5",
+    "persistent params",
+    "query params"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "coverage",
+    "test",
+    "bower.json",
+    "*.md",
+    "*.config.js",
+    "*.json"
+  ]
+}
