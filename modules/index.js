@@ -1,12 +1,13 @@
-const persistentParamsPlugin = params => router => {
+const persistentParamsPlugin = (params = {}) => router => {
     // Persistent parameters
-    const persistentParams = params.reduce(
-        (acc, param) => ({ ...acc, [param]: undefined }),
-        {}
-    );
+    const persistentParams = Array.isArray(params)
+        ? params.reduce((acc, param) => ({ ...acc, [param]: undefined }), {})
+        : params;
+
+    const paramNames = Object.keys(persistentParams);
 
     // Root node path
-    const path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
+    const path = router.rootNode.path.split('?')[0] + paramNames.length ? '?' + paramNames.join('&') : '';
     router.rootNode.setPath(path);
 
     const { buildPath, buildState } = router;
@@ -26,7 +27,7 @@ const persistentParamsPlugin = params => router => {
         name: 'PERSISTENT_PARAMS',
         onTransitionSuccess(toState) {
             Object.keys(toState.params)
-                .filter(p => params.indexOf(p) !== -1)
+                .filter(p => paramNames.indexOf(p) !== -1)
                 .forEach(p => persistentParams[p] = toState.params[p]);
         }
     };
