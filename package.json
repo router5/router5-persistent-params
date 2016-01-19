@@ -1,6 +1,6 @@
 {
   "name": "router5-persistent-params",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Persistent route parameters plugin for router5",
   "main": "dist/commonjs/index.js",
   "jsnext:main": "modules/index.js",
@@ -46,5 +46,8 @@
     "rollup-plugin-uglify": "^0.1.0",
     "router5": "router5/router5#v2",
     "yargs": "^3.32.0"
+  },
+  "peerDependencies": {
+    "router5": "^2.0.0"
   }
 }
