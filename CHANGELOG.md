@@ -1,3 +1,13 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/router5/router5-persistent-params/compare/v1.1.0...v1.1.2) (2016-01-19)
+
+
+### Bug Fixes
+
+* fix dev dependency issue ([ccef598](https://github.com/router5/router5-persistent-params/commit/ccef598))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/router5/router5-persistent-params/compare/v1.1.0...v1.1.0) (2016-01-19)
 
