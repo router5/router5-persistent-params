@@ -37,15 +37,18 @@
 
     babelHelpers;
 
-    var persistentParamsPlugin = function persistentParamsPlugin(params) {
+    var persistentParamsPlugin = function persistentParamsPlugin() {
+        var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
         return function (router) {
             // Persistent parameters
-            var persistentParams = params.reduce(function (acc, param) {
+            var persistentParams = Array.isArray(params) ? params.reduce(function (acc, param) {
                 return babelHelpers.extends({}, acc, babelHelpers.defineProperty({}, param, undefined));
-            }, {});
+            }, {}) : params;
+
+            var paramNames = Object.keys(persistentParams);
 
             // Root node path
-            var path = router.rootNode.path.split('?')[0] + params.length ? '?' + params.join('&') : '';
+            var path = router.rootNode.path.split('?')[0] + paramNames.length ? '?' + paramNames.join('&') : '';
             router.rootNode.setPath(path);
 
             var buildPath = router.buildPath;
@@ -67,7 +70,7 @@
                 name: 'PERSISTENT_PARAMS',
                 onTransitionSuccess: function onTransitionSuccess(toState) {
                     Object.keys(toState.params).filter(function (p) {
-                        return params.indexOf(p) !== -1;
+                        return paramNames.indexOf(p) !== -1;
                     }).forEach(function (p) {
                         return persistentParams[p] = toState.params[p];
                     });
