@@ -1,3 +1,13 @@
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/router5/router5-persistent-params/compare/v1.1.2...v1.1.3) (2016-01-25)
+
+
+### Bug Fixes
+
+* don't add to route undefined parameters ([00dd55a](https://github.com/router5/router5-persistent-params/commit/00dd55a))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/router5/router5-persistent-params/compare/v1.1.0...v1.1.2) (2016-01-19)
 

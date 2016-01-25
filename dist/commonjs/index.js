@@ -8,6 +8,14 @@ Object.defineProperty(exports, "__esModule", {
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var getDefinedParams = function getDefinedParams(params) {
+    return Object.keys(params).filter(function (param) {
+        return params[param] !== undefined;
+    }).reduce(function (acc, param) {
+        return _extends({}, acc, _defineProperty({}, param, params[param]));
+    }, {});
+};
+
 var persistentParamsPlugin = function persistentParamsPlugin() {
     var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
     return function (router) {
@@ -28,12 +36,12 @@ var persistentParamsPlugin = function persistentParamsPlugin() {
         // Decorators
 
         router.buildPath = function (route, params) {
-            var routeParams = _extends({}, persistentParams, params);
+            var routeParams = _extends({}, getDefinedParams(persistentParams), params);
             return buildPath.call(router, route, routeParams);
         };
 
         router.buildState = function (route, params) {
-            var routeParams = _extends({}, persistentParams, params);
+            var routeParams = _extends({}, getDefinedParams(persistentParams), params);
             return buildState.call(router, route, routeParams);
         };
 
