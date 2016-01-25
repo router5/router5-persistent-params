@@ -1,3 +1,11 @@
+const getDefinedParams = params =>
+    Object.keys(params)
+        .filter(param => params[param] !== undefined)
+        .reduce(
+            (acc, param) => ({ ...acc, [param]: params[param] }),
+            {}
+        );
+
 const persistentParamsPlugin = (params = {}) => router => {
     // Persistent parameters
     const persistentParams = Array.isArray(params)
@@ -14,12 +22,12 @@ const persistentParamsPlugin = (params = {}) => router => {
 
     // Decorators
     router.buildPath = function (route, params) {
-        const routeParams = { ...persistentParams, ...params };
+        const routeParams = { ...getDefinedParams(persistentParams), ...params };
         return buildPath.call(router, route, routeParams);
     };
 
     router.buildState = function (route, params) {
-        const routeParams = { ...persistentParams, ...params };
+        const routeParams = { ...getDefinedParams(persistentParams), ...params };
         return buildState.call(router, route, routeParams);
     };
 

@@ -21,12 +21,15 @@ describe('router5 persistent params plugin', () => {
 
         it('should persist specified parameters', (done) => {
             router.start();
-            router.navigate('route1', { id: '1', mode: 'dev' }, {}, (err, state) => {
-                expect(state.path).to.equal('/route1/1?mode=dev');
+            router.navigate('route2', { id: '2' }, {}, (err, state) => {
+                expect(state.path).to.equal('/route2/2');
+                router.navigate('route1', { id: '1', mode: 'dev' }, {}, (err, state) => {
+                    expect(state.path).to.equal('/route1/1?mode=dev');
 
-                router.navigate('route2', { id: '2' }, {}, (err, state) => {
-                    expect(state.path).to.equal('/route2/2?mode=dev');
-                    done();
+                    router.navigate('route2', { id: '2' }, {}, (err, state) => {
+                        expect(state.path).to.equal('/route2/2?mode=dev');
+                        done();
+                    });
                 });
             });
         });
