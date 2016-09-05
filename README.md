@@ -1,7 +1,9 @@
 [![npm version](https://badge.fury.io/js/router5-persistent-params.svg)](https://badge.fury.io/js/router5-persistent-params)
 [![Build Status](https://travis-ci.org/router5/router5-persistent-params.svg?branch=master)](https://travis-ci.org/router5/router5-persistent-params)
 
-# router-persistent-params
+# [DEPRECATED] router5-persistent-params
+
+## From version 4 and above of router5, this module is no longer needed and code has been moved to [router5](https://github.com/router5/router5) main repo. Refer to http://router5.github.io/docs/migration-4.html for more details.
 
 > Persistent route parameters plugin for router5.
 
@@ -14,7 +16,7 @@ import persistentParamsPlugin from 'router5-persistent-params';
 
 const router = new Router5()
     .usePlugin(persistentParamsPlugin(['mode']));
-    
+
 // Or
 
 const router = new Router5()
